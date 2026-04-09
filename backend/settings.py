@@ -1,3 +1,15 @@
+DATABASES = {
+    'default':{
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'iles_db',
+        'USER': 'iles_user',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT' : '5432',
+        
+    }
+}
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
