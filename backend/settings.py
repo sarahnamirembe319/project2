@@ -1,3 +1,19 @@
+INSTALLED_APPS =[
+    ...
+    'rest_framework',
+    'corsheaders',
+    'core',
+]
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    ...
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+
+]
+
 DATABASES = {
     'default':{
         'ENGINE': 'django.db.backends.postgresql',
@@ -6,7 +22,7 @@ DATABASES = {
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT' : '5432',
-        
+
     }
 }
 
