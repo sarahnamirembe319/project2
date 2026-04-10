@@ -1,7 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models 
 
-#custom user
 class CustomUser(AbstractUser):
     ROLE-CHOICES = (
         ('student', 'Student Intern'),
@@ -12,7 +11,6 @@ class CustomUser(AbstractUser):
     )
     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
 
- #Internship placement
 class InternshipPlacement(models.Model): 
     student = models.ForeignKey(CustomUser, on_delete=models.CASCADE,limit_choices_to={'role':'student'}) 
     supervisor = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, limit_choices_to={'role':'workplace'})
@@ -20,3 +18,21 @@ class InternshipPlacement(models.Model):
     end_date = models.DateField()
     approved = models.BooleanField(default=False)
     
+class WeeklyLog(models.Model):,
+   STATUS_CHOICES = (
+       ('draft', 'Draft'),
+       ('submitted', 'Submitted'),
+       ('approved', 'Approved'),
+       ('reviewed', 'Reviewed'),
+
+   )
+
+    placement = models.ForeignKey(InternshipPlacement, on_delete=models.CASCADE)
+    week_number = models.IntegerField()
+    tasks = models.TextField()
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft') 
+
+class Evaluation(models.Model):
+    student = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    score = models.FloatField()
+    comments = models.TextField()

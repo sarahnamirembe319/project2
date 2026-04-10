@@ -14,6 +14,8 @@ CORS_ALLOWED_ORIGINS = [
 
 ]
 
+AUTH_USER_MODEL = 'core.CustomUser'
+
 DATABASES = {
     'default':{
         'ENGINE': 'django.db.backends.postgresql',
