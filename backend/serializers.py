@@ -10,4 +10,24 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta : 
         model =CustomUser
         fields = '__all__'
-        
+
+class WeeklyLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WeeklyLog
+        fields = '__all__'
+
+ class EvaluationSerializer(serializers.Models)
+    class Meta:
+        model = Evaluation
+        fields = '__all__' 
+
+ from rest_framework.viewsets import ModelViewSet
+
+class WeeklyLogViewSet(ModelViewSet):
+    queryset = WeeklyLog.objects.all()
+    serializer_class = WeeklyLogSerializer  
+
+ def save(self, *args, **kwargs):
+    if self.status == 'approved':
+        raise ValidationError("Cannot edit approved log")
+    super().save(*args, **kwargs)           
