@@ -52,4 +52,12 @@ class InternshipPlacement(models.Model):
       )
       if overlaps.exists():
             raise ValidationError("This internship placement overlaps with another placement for this student.")
-      
+
+class WeeklyLog(models.Model):
+   ...
+   def clean (self):
+      if self.week_number < 1 or self.week_number > 12:
+         raise ValidationError("Week number must be between 1 and 12.")
+
+      class Meta:
+         unique_together = ['placement', 'week_number']     
