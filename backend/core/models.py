@@ -36,3 +36,20 @@ class Evaluation(models.Model):
     student = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     score = models.FloatField()
     comments = models.TextField()
+
+from django.core.exceptions import ValidationError
+
+class InternshipPlacement(models.Model):
+   student = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+   start_date = models.DateField()
+   end_date = models.DateField()
+
+    def clean (self):
+      overlaps = InternshipPlacement.objects.filter(
+            student=self.student,
+            start_date__lt=self.end_date,
+            end_date__gte=self.start_date
+      )
+      if overlaps.exists():
+            raise ValidationError("This internship placement overlaps with another placement for this student.")
+      
