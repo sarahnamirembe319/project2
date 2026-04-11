@@ -1,4 +1,5 @@
-from pathlib import Path
+
+DEBUG = True
 
 
 INSTALLED_APPS = [
@@ -47,7 +48,7 @@ WSGI_APPLICATION = 'iles_backend.wsgi.application'
 
 
 DATABASES = {
-     'default': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'iles_db',
         'USER': 'postgres',
@@ -55,7 +56,9 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
     }
-}
+
+    },
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -72,13 +75,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 TIME_ZONE = 'Africa/Kampala'
 
-
-STATIC_URL = 'static/'
-
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-
-
-CORS_ALLOW_ALL_ORIGINS = True
-
