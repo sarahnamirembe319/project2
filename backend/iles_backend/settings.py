@@ -1,6 +1,6 @@
+from pathlib import Path
 
 DEBUG = True
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -56,9 +56,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
     }
-
-    },
-
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -75,7 +73,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 TIME_ZONE = 'Africa/Kampala'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+STATIC_URL = 'static/'
+
+CORS_ALLOW_ALL_ORIGINS = True
