@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
-from django.db import models 
+from django.db import models   
+from django.core.exceptions import ValidationError
 
 class CustomUser(AbstractUser):
     ROLE-CHOICES = (
@@ -60,4 +61,33 @@ class WeeklyLog(models.Model):
          raise ValidationError("Week number must be between 1 and 12.")
 
       class Meta:
-         unique_together = ['placement', 'week_number']     
+         unique_together = ['placement', 'week_number'] 
+
+         def save(self, *args, **kwargs):
+    if self.status == 'approved':
+        raise ValidationError("Cannot edit approved log")
+    super().save(*args, **kwargs)           
+  
+
+          def approve(self):
+    if self.status != 'reviewed':
+        raise ValidationError("Must be reviewed first")
+    self.status = 'approved'
+    self.save()  
+   
+   review_comment = models.TextField(blank=True) 
+
+   class Evaluation(models.Model):
+    student = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    technical = models.FloatField()
+    communication = models.FloatField()
+    professionalism = models.FloatField()
+    total_score = models.FloatField(editable=False)
+
+    def save(self, *args, **kwargs):
+        self.total_score = (
+            self.technical * 0.4 +
+            self.communication * 0.3 +
+            self.professionalism * 0.3
+        )
+        super().save(*args, **kwargs)
