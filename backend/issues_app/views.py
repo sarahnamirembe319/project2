@@ -79,3 +79,10 @@ class DashboardView(APIView):
             payload['summary'] = 'You can submit issues and track progress on the ones you created.'
 
         return Response(DashboardSerializer(payload).data)
+
+class MeView(APIView):
+    def get(self, request):
+        return Response({
+            "username": request.user.username,
+            "role": request.user.role
+        })
