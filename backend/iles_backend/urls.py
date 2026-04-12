@@ -19,6 +19,7 @@ from django.urls import path
 from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('issues/', include('issues_app.urls')), # Points to your issues folder
-    path('users/', include('users_app.urls')),   # Points to your users folder
+    path('issues/', include('issues_app.urls')), 
+    path('users/', include('users_app.urls')), 
+     path('me/', MeView.as_view()) 
 ]
