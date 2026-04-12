@@ -1,6 +1,8 @@
-from django.urls import path
-from . import views
+from rest_framework.routers import DefaultRouter
 
-urlpatterns = [
-    path('', views.index, name='issues-index'),
-]
+from .views import IssueViewSet
+
+router = DefaultRouter()
+router.register('', IssueViewSet, basename='issue')
+
+urlpatterns = router.urls
