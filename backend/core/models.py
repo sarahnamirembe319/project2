@@ -75,4 +75,19 @@ class WeeklyLog(models.Model):
     self.status = 'approved'
     self.save()  
    
-   review_comment = models.TextField(blank=True)
+   review_comment = models.TextField(blank=True) 
+
+   class Evaluation(models.Model):
+    student = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    technical = models.FloatField()
+    communication = models.FloatField()
+    professionalism = models.FloatField()
+    total_score = models.FloatField(editable=False)
+
+    def save(self, *args, **kwargs):
+        self.total_score = (
+            self.technical * 0.4 +
+            self.communication * 0.3 +
+            self.professionalism * 0.3
+        )
+        super().save(*args, **kwargs)
