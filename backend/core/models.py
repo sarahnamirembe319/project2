@@ -61,7 +61,13 @@ class WeeklyLog(models.Model):
          raise ValidationError("Week number must be between 1 and 12.")
 
       class Meta:
-         unique_together = ['placement', 'week_number']  
+         unique_together = ['placement', 'week_number'] 
+
+         def save(self, *args, **kwargs):
+    if self.status == 'approved':
+        raise ValidationError("Cannot edit approved log")
+    super().save(*args, **kwargs)           
+  
 
           def approve(self):
     if self.status != 'reviewed':
