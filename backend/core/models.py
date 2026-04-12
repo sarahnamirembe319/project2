@@ -74,3 +74,5 @@ class WeeklyLog(models.Model):
         raise ValidationError("Must be reviewed first")
     self.status = 'approved'
     self.save()  
+   
+   review_comment = models.TextField(blank=True)
