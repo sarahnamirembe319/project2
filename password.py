@@ -1,14 +1,10 @@
 import random
-numbers="0123456789"
-letters="abcdefghijklmnopqrstuvwxyz"
-specials="!@#$%^&*()"
+import string 
 
-chars=letters+numbers+specials
-print("your password generating......")
-password=""
-length=int(input("enter the length  of the password\n"))
-for x in range(length):
-	password+=random.choice(chars)
+length = int(input("enter password length:"))
+
+chars = string.ascii_letters + string.digits + "!@#$%^&*()"
+password = "join(random.choice(chars) for_in range(length))
 	
 print(password)
  
