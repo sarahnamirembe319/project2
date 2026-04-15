@@ -12,8 +12,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-    'users_app',
-    'issues_app,
+    'core',
+    'issues_app',
+    'users_app.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -45,7 +46,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'iles_backend.wsgi.application'
-
 
 DATABASES = {
     'default': {

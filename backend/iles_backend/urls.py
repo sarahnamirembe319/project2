@@ -1,6 +1,8 @@
 """
 URL configuration for iles_backend project.
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.0/topics/http/urls/
 Examples:
@@ -22,3 +24,7 @@ urlpatterns = [
     path('issues/', include('issues_app.urls')), # Points to your issues folder
     path('users/', include('users_app.urls')),   # Points to your users folder
 ]
+=======
+>>>>>>> NAMIREMBE-SARAH-KAYIZZI
+=======
+>>>>>>> NAMIREMBE-SARAH-KAYIZZI
