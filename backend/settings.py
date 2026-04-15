@@ -1,8 +1,12 @@
 INSTALLED_APPS =[
-    ...
+    'django.contrib.admin',
+    'django.contrib.auth',
     'rest_framework',
     'corsheaders',
     'core',
+    'issues_app',
+    'users_app.apps.UsersConfig',
+
 ]
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
