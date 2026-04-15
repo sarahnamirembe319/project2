@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate
 from rest_framework import generics, permissions, status
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework.views import APIView 
+from rest_framework.permissions import IsAuthenticated
 
 from issues.models import Issue
 
@@ -79,3 +80,20 @@ class DashboardView(APIView):
             payload['summary'] = 'You can submit issues and track progress on the ones you created.'
 
         return Response(DashboardSerializer(payload).data)
+
+class MeView(APIView):
+    def get(self, request):
+        return Response({
+            "username": request.user.username,
+            "role": request.user.role
+        }) 
+    
+
+class MeView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({
+            "username": request.user.username,
+            "role": request.user.role
+        })

@@ -18,11 +18,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.urls import path, include
+from django.urls import path, include 
+from rest_framework.views import APIView
+from issues_app.views import MeView 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('issues/', include('issues_app.urls')), # Points to your issues folder
-    path('users/', include('users_app.urls')),   # Points to your users folder
+    path('issues/', include('issues_app.urls')), 
+    path('users/', include('users_app.urls')), 
+     path('me/', MeView.as_view()) 
 ]
 =======
 >>>>>>> NAMIREMBE-SARAH-KAYIZZI
