@@ -1,5 +1,5 @@
 from django.urls import path , include
-from . import views 
+from  .import views 
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('create_placement/', views.create_placement, name='create_placement'),
