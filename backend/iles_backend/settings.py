@@ -32,6 +32,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'iles_backend.urls'
+LOGIN_URL = '/login/'
 
 AUTH_USER_MODEL = 'core.CustomUser'
 
@@ -78,6 +79,8 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 TIME_ZONE = 'Africa/Kampala'
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']  # if you have a static folder
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 CORS_ALLOW_ALL_ORIGINS = True

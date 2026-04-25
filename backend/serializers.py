@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CustomUser 
+from .models import CustomUser, WeeklyLog, Evaluation 
 
 class UserSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
@@ -16,12 +16,12 @@ class WeeklyLogSerializer(serializers.ModelSerializer):
         model = WeeklyLog
         fields = '__all__'
 
- class EvaluationSerializer(serializers.ModelSerializer):
+class EvaluationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Evaluation
         fields = '__all__' 
 
- from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet
 
 class WeeklyLogViewSet(ModelViewSet):
     queryset = WeeklyLog.objects.all()
