@@ -54,9 +54,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'iles_backend.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    'default':{
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'iles_db',
+        'USER': 'iles_user',
+        'PASSWORD': '@group4',
+        'HOST': 'localhost',
+        'PORT' : '5432',
+
     }
 }
 
@@ -74,7 +79,22 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
 
+from rest_framework.permissions import BasePermission
+
+class IsStudent(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.role == 'student'
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 TIME_ZONE = 'Africa/Kampala'
