@@ -165,3 +165,4 @@ class Evaluation(models.Model):
 
     def __str__(self):
         return f"{self.evaluator.username} evaluated {self.placement}"
+    
