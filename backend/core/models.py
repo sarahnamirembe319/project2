@@ -30,7 +30,12 @@ class CustomUser(AbstractUser):
     )
     def clean(self):
         super().clean()
-        if self.role not in dict(self.ROLE_CHOICES)->sel-
+        if self.role not in dict(self.ROLE_CHOICES):
+            raise ValidationError({'role': 'Invalid role selected.'})
+        
+
+    
+              
 
 class EvaluationCriteria(models.Model):
     name = models.CharField(max_length=100)
