@@ -1,8 +1,10 @@
-from pathlib import Path
+from pathlib import Path 
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY= '%6xno+ciz@$o^!jy#ofafyrf!(9s^-15lp-3+2(cwjf2pc*l^i'
-
+SECRET_KEY= os.getenv('SECRET_KEY')
 DEBUG = True
 
 INSTALLED_APPS = [
@@ -56,12 +58,11 @@ WSGI_APPLICATION = 'iles_backend.wsgi.application'
 DATABASES = {
     'default':{
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'iles_db',
-        'USER': 'iles_user',
-        'PASSWORD': '@group4',
-        'HOST': 'localhost',
-        'PORT' : '5432',
-
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
