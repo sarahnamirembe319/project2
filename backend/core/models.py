@@ -166,3 +166,27 @@ class Evaluation(models.Model):
     def __str__(self):
         return f"{self.evaluator.username} evaluated {self.placement}"
     
+class InternshipPlacement(models.Model):
+    student = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='placements'
+    )
+    company = models.CharField(max_length=200)
+    position = models.CharField(max_length=200)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.student.username} - {self.company}"
+    
+    def clean(self):
+       f self.start_date and self.end_date:
+            if self.end_date <= self.start_date:
+                raise ValidationError("End date must be after start date.")
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
