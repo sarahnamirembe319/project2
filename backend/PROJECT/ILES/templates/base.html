@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ILES System</title>
+</head>
+<body>
+
+    <h1>Internship Logging & Evaluation System</h1>
+
+    <nav>
+        <a href="/student-dashboard/">Student</a> |
+        <a href="/supervisor-dashboard/">Supervisor</a> |
+        <a href="/admin-dashboard/">Admin</a> |
+        <a href="/placements/">Placements</a> |
+        <a href="/evaluation_list/">Evaluations</a> |
+        <a href="{% url 'logout' %}">Logout</a>
+    </nav>
+
+    <hr>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

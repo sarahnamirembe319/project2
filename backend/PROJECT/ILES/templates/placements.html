@@ -1,0 +1,7 @@
+<h2>Placements</h2>
+
+<ul>
+{% for placement in placements %}
+    <li>{{ placement.student }} - {{ placement.company_name }} ({{ placement.position_title }})</li>
+{% endfor %}
+</ul>

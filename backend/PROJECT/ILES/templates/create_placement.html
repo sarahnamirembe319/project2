@@ -1,0 +1,23 @@
+<h2>Create Placement</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Student:</label>
+    <select name="student_id">
+        {% for s in student %}
+            <option value="{{ s.id }}">{{ s.username }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <input type="text" name="position_title" placeholder="Position"><br><br>
+    <input type="text" name="company_name" placeholder="Company"><br><br>
+
+    <input type="date" name="start_date"><br><br>
+    <input type="date" name="end_date"><br><br>
+
+    <input type="text" name="workplace_supervisor" placeholder="Workplace Supervisor"><br><br>
+    <input type="text" name="academic_supervisor" placeholder="Academic Supervisor"><br><br>
+
+    <button type="submit">Create</button>
+</form>

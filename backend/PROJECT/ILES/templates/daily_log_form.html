@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Create Daily Log</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Weekly Log:</label>
+    <select name="weekly_log">
+        {% for w in weekly_logs %}
+            <option value="{{ w.id }}">{{ w.week_number }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <input type="text" name="day" placeholder="Day"><br><br>
+    <input type="text" name="activity" placeholder="Activity"><br><br>
+    <input type="text" name="skills_gained" placeholder="Skills"><br><br>
+    <input type="text" name="challenges" placeholder="Challenges"><br><br>
+
+    <textarea name="description" placeholder="Description"></textarea><br><br>
+
+    <button type="submit">Save</button>
+</form>
+
+{% endblock %}
