@@ -1,9 +1,4 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
+from django.urls import path
 from . import views
 
-router = DefaultRouter()
-
-urlpatterns = [
-    # Add your URL patterns here
-]
+urlpatterns = [path('me/', views.MeView.as_view(), name='me'),]

@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import InternshipPlacement, WeeklyLog, EvaluationCriteria, Evaluation
+from .models import Internship_placement, Weekly_log, Evaluation_criteria, Evaluation, Student, Supervisor, Daily_log
 
-# Register your models here.
-admin.site.register(InternshipPlacement)
-admin.site.register(WeeklyLog)
-admin.site.register(EvaluationCriteria)
+admin.site.register(Internship_placement)
+admin.site.register(Weekly_log)
+admin.site.register(Evaluation_criteria)
 admin.site.register(Evaluation)
-
-# Register your models here.
+admin.site.register(Student)
+admin.site.register(Supervisor)
+admin.site.register(Daily_log)

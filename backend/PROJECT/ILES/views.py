@@ -4,19 +4,12 @@ from .models import Evaluation_criteria, Internship_placement, Evaluation, Stude
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate , login , logout 
 from django.contrib.auth.decorators import login_required
-from rest_framework.decorators import api_view , permission_classes , authentication_classes
+from rest_framework.decorators import api_view , permission_classes  
 from rest_framework.response import Response
 from .serializers import EvaluationSerializer, Internship_placementSerializer ,Weekly_logSerializer
 from rest_framework.permissions import IsAuthenticated , AllowAny
 #from rest_framework.viewsets import ModelViewSet
 from datetime import date
-import json 
-from django.http import JsonResponse
-from django.contrib.auth import authenticate
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.authtoken.models import Token
-from rest_framework.authentication import TokenAuthentication 
-
 User = get_user_model()
 
 @login_required
@@ -152,18 +145,12 @@ def login_view(request):
             user=authenticate(request, username=username,password=password)
             if user is not None:
                 login(request,user)
-
-                if user.is_superuser:
-                    return redirect('admin_dashboard')
-                role=getattr(user, 'role', None)
-
-                if role == 'student':
+                if user.role == 'Student':
                     return redirect('student_dashboard')
-                elif role=='supervisor':
+                elif user.role=='supervisor':
                     return redirect('supervisor_dashboard')
-                elif role == 'admin':
+                elif user.role=='admin':
                     return redirect('admin_dashboard')
-                
                 return redirect('dashboard')
             else:
                 return render(request,'login.html', {'error':'invalid details'})
@@ -176,37 +163,27 @@ def logout_view(request):
 def dashboard(request):
     if not request.user.is_authenticated:
         return redirect('login')
-    
-    if request.user.is_superuser:
-        return redirect('admin_dashboard')
-    
-    if role == 'student':
+    if request.user.role=='student':
          return redirect('student_dashboard')
-    elif role == 'supervisor':
+    elif request.user.role=='supervisor':
         return redirect('supervisor_dashboard')
-    
-    return redirect('admin_dashboard')
-    
+    elif request.user.role=='admin':
+        return redirect('admin_dashboard')
 @login_required
 def student_dashboard(request):
-    role=getattr(request.user, 'role',None)
-    if role !='student':
+    if request.user.role !='student':
         return redirect('login')
     return render(request, 'student_dashboard.html')
 
 @login_required
 def supervisor_dashboard(request):
-    role=getattr(request.user, 'role',None)
-    if role !='supervisor':
+    if request.user.role !='supervisor':
         return redirect('login')
     return render(request,'supervisor_dashboard.html')
 
 @login_required
 def admin_dashboard(request):
-    if request.user.is_superuser:
-        return render(request, 'admin_dashboard.html')
-    role=getattr(request.user, 'role',None)
-    if role !='admin':
+    if request.user.role !='admin':
         return redirect('login')
     return render(request,'admin_dashboard.html')
 
@@ -228,7 +205,6 @@ def get_evaluation(request):
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
-@permission_classes([TokenAuthentication])
 def logs(request):
     if request.method=='GET':
         logs=Weekly_log.objects.all()
@@ -305,36 +281,4 @@ def update_log(request, pk):
     queryset=Log.objects.all()
     serializer_class=LogSerializer
 
-@csrf_exempt
-def api_login_view(request):
-    if request.method == "POST":
-        try:
-            #Read data from React
-            data=json.loads(request.body)
-            username= data.get('username')
-            password= data.get('password')
-
-            #check for credentials
-            user=authenticate(request, username=username, password=password)
-
-            if user is not None:
-                #Get or creatw Token 
-                token, created = Token.objects.get_or_create(user=user)
-                #safely get role
-                role=getattr(user, 'role', 'unknown')
-                return JsonResponse({
-                    "user": user.username,
-                    "token":token.key,
-                    "role": role
-                })
-            else:
-                return JsonResponse(
-                    {"error": "Invalid credentials"},
-                    status=401
-                )
-        except Exception as e:
-            return JsonResponse(
-                {"error":str(e)},
-                status=400
-            )
-        return JsonResponse({"error":"Method not allowed"}, status=405)
+    
