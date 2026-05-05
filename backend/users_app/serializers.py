@@ -1,6 +1,8 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
-from issues_app.models import Issue
+from django.contrib.auth import get_user_model
+from issues_app.models import Internship_placement
+
+User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -10,11 +12,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class IssueSerializer(serializers.ModelSerializer):
-    created_by = UserSerializer(read_only=True)
-    assigned_to = UserSerializer(read_only=True)
-
     class Meta:
-        model = Issue
-        fields = ['id', 'title', 'description', 'status', 'priority', 
-                 'created_by', 'assigned_to', 'created_at', 'updated_at']
-        read_only_fields = ['id', 'created_at', 'updated_at']
+        model = Internship_placement
+        fields = '__all__'
