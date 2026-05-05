@@ -54,7 +54,7 @@ class Evaluation(models.Model):
     ]
 
     placement = models.ForeignKey(
-        InternshipPlacement,
+        "internships.InternshipPlacement",
         on_delete=models.CASCADE,
         related_name='evaluations'
     )
@@ -91,7 +91,7 @@ class WeeklyLog(models.Model):
         ('rejected', 'Rejected'),
     ]
     placement = models.ForeignKey(
-        InternshipPlacement,
+        "internships.InternshipPlacement",
         on_delete=models.CASCADE,
         related_name='weekly_logs'
     )
@@ -138,7 +138,7 @@ class Evaluation(models.Model):
     ]
 
     placement = models.ForeignKey(
-        InternshipPlacement,
+        "internships.InternshipPlacement",
         on_delete=models.CASCADE,
         related_name='evaluations'
     )
