@@ -1,8 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.exceptions import ValidationError
-from django.config import settings 
-from internships.models import InternshipPlacement
+from django.conf import settings 
+#from internships.models import InternshipPlacement
 
 class CustomUser(AbstractUser):
     ROLE_CHOICES = (
@@ -183,8 +183,8 @@ class InternshipPlacement(models.Model):
         return f"{self.student.username} - {self.company}"
     
     def clean(self):
-       f self.start_date and self.end_date:
-            if self.end_date <= self.start_date:
+     if self.start_date and self.end_date:
+      if self.end_date <= self.start_date:
                 raise ValidationError("End date must be after start date.")
 
     def save(self, *args, **kwargs):
