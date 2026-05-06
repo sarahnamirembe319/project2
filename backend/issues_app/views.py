@@ -1,15 +1,13 @@
-from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import generics
 from .models import InternshipPlacement
-from .serializers import InternshipPlacementSerializer
+from users_app.serializers import IssueSerializer
 
 
-class InternshipPlacementViewSet(viewsets.ModelViewSet):
-    serializer_class = InternshipPlacementSerializer
-    permission_classes = [IsAuthenticated]
+class InternshipPlacementListCreateView(generics.ListCreateAPIView):
+    queryset = InternshipPlacement.objects.all()
+    serializer_class = IssueSerializer
 
-    def get_queryset(self):
-        return InternshipPlacement.objects.filter(created_by=self.request.user)
 
-    def perform_create(self, serializer):
-        serializer.save(created_by=self.request.user)
+class InternshipPlacementDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = InternshipPlacement.objects.all()
+    serializer_class = IssueSerializer

@@ -1,17 +1,11 @@
-from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.views import APIView
-from rest_framework import permissions
-from rest_framework import status, generics
+from rest_framework import permissions, status, generics
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
 from .serializers import UserRegisterSerializer, UserSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView
-
-class CustomTokenObtainPairView(TokenObtainPairView):
-    pass
 
 User = get_user_model()
 
