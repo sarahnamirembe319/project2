@@ -1,24 +1,24 @@
 from rest_framework import serializers
-from .models import Internship_placement, Weekly_log, Evaluation_criteria, Evaluation, Student, Supervisor, Daily_log
+from .models import InternshipPlacement, WeeklyLog, EvaluationCriteria, Evaluation, Student, Supervisor, Daily_log
 
 class EvaluationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Evaluation
         fields = '__all__'
 
-class Internship_placementSerializer(serializers.ModelSerializer):
+class InternshipPlacementSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Internship_placement
+        model = InternshipPlacement
         fields = '__all__'
 
-class Weekly_logSerializer(serializers.ModelSerializer):
+class WeeklyLogSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Weekly_log
+        model = WeeklyLog
         fields = '__all__'
 
-class Evaluation_criteriaSerializer(serializers.ModelSerializer):
+class EvaluationCriteriaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Evaluation_criteria
+        model = EvaluationCriteria
         fields = '__all__'
 
 class StudentSerializer(serializers.ModelSerializer):
@@ -31,7 +31,3 @@ class SupervisorSerializer(serializers.ModelSerializer):
         model = Supervisor
         fields = '__all__'
 
-class Daily_logSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Daily_log
-        fields = '__all__'

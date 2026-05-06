@@ -14,7 +14,7 @@ class Supervisor(models.Model):
     def __str__(self):
         return f"{self.user.username}"
 
-class Internship_placement(models.Model):
+class InternshipPlacement(models.Model):
     student = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     position_title = models.CharField(max_length=100)
     company_name = models.CharField(max_length=100)
@@ -26,7 +26,7 @@ class Internship_placement(models.Model):
     def __str__(self):
         return f"{self.company_name} - {self.position_title}"
 
-class Evaluation_criteria(models.Model):
+class EvaluationCriteria(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
 
@@ -36,14 +36,14 @@ class Evaluation_criteria(models.Model):
 class Evaluation(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     supervisor = models.ForeignKey(Supervisor, on_delete=models.CASCADE)
-    criteria = models.ForeignKey(Evaluation_criteria, on_delete=models.CASCADE)
+    criteria = models.ForeignKey(EvaluationCriteria, on_delete=models.CASCADE)
     performance_score = models.IntegerField()
     comments = models.TextField(blank=True)
 
     def __str__(self):
         return f"Evaluation of {self.student}"
 
-class Weekly_log(models.Model):
+class WeeklyLog(models.Model):
     STATE_CHOICES = [
         ('Pending', 'Pending'),
         ('Approved', 'Approved'),
