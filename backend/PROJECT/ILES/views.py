@@ -1,12 +1,12 @@
 
 from django.shortcuts import render, redirect , get_object_or_404
-from .models import Evaluation_criteria, Internship_placement, Evaluation, Student , Supervisor , Weekly_log , Daily_log 
+from .models import Evaluation_criteria, InternshipPlacement, Evaluation, Student , Supervisor , Weekly_log , Daily_log 
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate , login , logout 
 from django.contrib.auth.decorators import login_required
 from rest_framework.decorators import api_view , permission_classes  
 from rest_framework.response import Response
-from .serializers import EvaluationSerializer, Internship_placementSerializer ,Weekly_logSerializer
+from .serializers import EvaluationSerializer, InternshipPlacementSerializer ,Weekly_logSerializer
 from rest_framework.permissions import IsAuthenticated , AllowAny
 #from rest_framework.viewsets import ModelViewSet
 from datetime import date
@@ -23,7 +23,7 @@ def create_placement(request):
         workplace_supervisor=request.POST.get('workplace_supervisor')
         academic_supervisor=request.POST.get('academic_supervisor')
 
-        Internship_placement.objects.create(
+        InternshipPlacement.objects.create(
             student_id=student_id,
             position_title=position_title,
             company_name=company_name,
@@ -38,11 +38,11 @@ def create_placement(request):
 
 
 def placements_list(request):
-    placements = Internship_placement.objects.all()
+    placements = InternshipPlacement.objects.all()
     return render(request, 'placements.html', {'placements': placements})
 
 def student_placements(request, student_id):
-    placements=Internship_placement.objects.filter(student_id=student_id)
+    placements=InternshipPlacement.objects.filter(student_id=student_id)
     return render(request,'student_placements.html',{'placements':placements})
  
 def create_evaluation(request):
@@ -222,11 +222,11 @@ def logs(request):
 @permission_classes([AllowAny])
 def placements(request):
     if request.method == 'GET':
-        data=Internship_placement.objects.all()
-        serializer=Internship_placementSerializer(data , many=True)
+        data=InternshipPlacement.objects.all()
+        serializer=InternshipPlacementSerializer(data , many=True)
         return Response(serializer.data)
     elif request.method=='POST':
-        serializer=Internship_placementSerializer(data=request.data)
+        serializer=InternshipPlacementSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data , status=201)
