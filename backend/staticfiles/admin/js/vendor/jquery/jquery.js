@@ -116,7 +116,7 @@ var document = window.document;
 				// On the other hand, just using `getAttribute` is not enough as
 				// the `nonce` attribute is reset to an empty string whenever it
 				// becomes browsing-context connected.
-				// See https://github.com/whatwg/html/issues/2369
+				// See https://github.com/whatwg/html/InternshipPlacements/2369
 				// See https://html.spec.whatwg.org/#nonce-attributes
 				// The `node.getAttribute` check was added for the sake of
 				// `jQuery.globalEval` so that it can fake a nonce-containing node
@@ -951,7 +951,7 @@ function createCache() {
 	function cache( key, value ) {
 
 		// Use (key + " ") to avoid collision with native prototype properties
-		// (see https://github.com/jquery/sizzle/issues/157)
+		// (see https://github.com/jquery/sizzle/InternshipPlacements/157)
 		if ( keys.push( key + " " ) > Expr.cacheLength ) {
 
 			// Only keep the most recent entries
@@ -1326,8 +1326,8 @@ function setDocument( node ) {
 		// Support: IE 11+, Edge 15 - 18+
 		// IE 11/Edge don't find elements on a `[name='']` query in some cases.
 		// Adding a temporary attribute to the document before the selection works
-		// around the issue.
-		// Interestingly, IE 10 & older don't seem to have the issue.
+		// around the InternshipPlacement.
+		// Interestingly, IE 10 & older don't seem to have the InternshipPlacement.
 		input = document.createElement( "input" );
 		input.setAttribute( "name", "" );
 		el.appendChild( input );
@@ -1879,7 +1879,7 @@ Expr = jQuery.expr = {
 					matcher( input, null, xml, results );
 
 					// Don't keep the element
-					// (see https://github.com/jquery/sizzle/issues/299)
+					// (see https://github.com/jquery/sizzle/InternshipPlacements/299)
 					input[ 0 ] = null;
 					return !results.pop();
 				};
@@ -2397,7 +2397,7 @@ function matcherFromTokens( tokens ) {
 					matchAnyContext( elem, context, xml ) );
 
 			// Avoid hanging onto element
-			// (see https://github.com/jquery/sizzle/issues/299)
+			// (see https://github.com/jquery/sizzle/InternshipPlacements/299)
 			checkContext = null;
 			return ret;
 		} ];
@@ -4104,7 +4104,7 @@ Data.prototype = {
 			// Support: Chrome <=35 - 45
 			// Webkit & Blink performance suffers when deleting properties
 			// from DOM nodes, so set to undefined instead
-			// https://bugs.chromium.org/p/chromium/issues/detail?id=378607 (bug restricted)
+			// https://bugs.chromium.org/p/chromium/InternshipPlacements/detail?id=378607 (bug restricted)
 			if ( owner.nodeType ) {
 				owner[ this.expando ] = undefined;
 			} else {
@@ -5648,7 +5648,7 @@ jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateTyp
 	// Support: Chrome <=48 - 49, Safari <=9.0 - 9.1
 	// focus(in | out) events fire after focus & blur events,
 	// which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
-	// Related ticket - https://bugs.chromium.org/p/chromium/issues/detail?id=449857
+	// Related ticket - https://bugs.chromium.org/p/chromium/InternshipPlacements/detail?id=449857
 	//
 	// Support: IE 9 - 11+
 	// To preserve relative focusin/focus & focusout/blur event order guaranteed on the 3.x branch,
@@ -5700,7 +5700,7 @@ jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateTyp
 //
 // Support: Safari 7 only
 // Safari sends mouseenter too often; see:
-// https://bugs.chromium.org/p/chromium/issues/detail?id=470258
+// https://bugs.chromium.org/p/chromium/InternshipPlacements/detail?id=470258
 // for the description of the bug (it existed in older Chrome versions as well).
 jQuery.each( {
 	mouseenter: "mouseover",
@@ -5990,7 +5990,7 @@ jQuery.extend( {
 			clone = elem.cloneNode( true ),
 			inPage = isAttached( elem );
 
-		// Fix IE cloning issues
+		// Fix IE cloning InternshipPlacements
 		if ( !support.noCloneChecked && ( elem.nodeType === 1 || elem.nodeType === 11 ) &&
 				!jQuery.isXMLDoc( elem ) ) {
 
@@ -6393,7 +6393,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 				// display for all div elements is set to "inline",
 				// which causes a problem only in Android 8 Chrome 86.
 				// Ensuring the div is `display: block`
-				// gets around this issue.
+				// gets around this InternshipPlacement.
 				trChild.style.display = "block";
 
 				documentElement
@@ -6420,7 +6420,7 @@ function curCSS( elem, name, computed ) {
 
 		// Support: Firefox 51+
 		// Retrieving style before computed somehow
-		// fixes an issue with getting wrong values
+		// fixes an InternshipPlacement with getting wrong values
 		// on detached elements
 		style = elem.style;
 
@@ -6680,7 +6680,7 @@ function getWidthOrHeight( elem, dimension, extra ) {
 		// Support: IE 10 - 11+, Edge 15 - 18+
 		// IE/Edge misreport `getComputedStyle` of table rows with width/height
 		// set in CSS while `offset*` properties report correct values.
-		// Interestingly, in some cases IE 9 doesn't suffer from this issue.
+		// Interestingly, in some cases IE 9 doesn't suffer from this InternshipPlacement.
 		!support.reliableTrDimensions() && nodeName( elem, "tr" ) ||
 
 		// Fall back to offsetWidth/offsetHeight when value is "auto"
@@ -10454,7 +10454,7 @@ jQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( 
 // Support: Safari <=7 - 9.1, Chrome <=37 - 49
 // Add the top/left cssHooks using jQuery.fn.position
 // Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
-// Blink bug: https://bugs.chromium.org/p/chromium/issues/detail?id=589347
+// Blink bug: https://bugs.chromium.org/p/chromium/InternshipPlacements/detail?id=589347
 // getComputedStyle returns percent when specified for top/left/bottom/right;
 // rather than make the css module depend on the offset module, just check for it here
 jQuery.each( [ "top", "left" ], function( _i, prop ) {

@@ -259,8 +259,8 @@ def update_log(request, pk):
     return Response(serializer.errors, status=400)
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def get_issues(request):
-    # Return placements as "issues" for now since that's your main data
+def get_InternshipPlacements(request):
+    # Return placements as "InternshipPlacements" for now since that's your main data
     data = InternshipPlacement.objects.all()
     serializer = InternshipPlacementSerializer(data, many=True)
     return Response(serializer.data)
@@ -269,10 +269,10 @@ def get_issues(request):
 def dashboard_api(request):
     return Response({
         'stats': {
-            'total_issues': InternshipPlacement.objects.count(),
-            'open_issues': 0,
-            'in_progress_issues': 0,
-            'resolved_issues': 0,
+            'total_InternshipPlacements': InternshipPlacement.objects.count(),
+            'open_InternshipPlacements': 0,
+            'in_progress_InternshipPlacements': 0,
+            'resolved_InternshipPlacements': 0,
         },
         'role': request.user.role,
         'welcome_message': f'Welcome {request.user.username}',

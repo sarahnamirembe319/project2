@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('issues_app', '0002_evaluation_criteria_weeklylog_placement_and_more'),
+        ('InternshipPlacements_app', '0002_evaluation_criteria_weeklylog_placement_and_more'),
     ]
 
     operations = [
@@ -36,6 +36,6 @@ class Migration(migrations.Migration):
             preserve_default=False,
         ),
         migrations.DeleteModel(
-            name='Issue',
+            name='InternshipPlacement',
         ),
     ]

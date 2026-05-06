@@ -2393,7 +2393,7 @@ XRegExp.addToken(/\\(\d+)/, function (match, scope) {
 /*
  * Named capturing group; match the opening delimiter only: `(?<name>`. Capture names can use the
  * RegExpIdentifierName characters only. Names can't be integers. Supports Python-style
- * `(?P<name>` as an alternate syntax to avoid issues in some older versions of Opera which natively
+ * `(?P<name>` as an alternate syntax to avoid InternshipPlacements in some older versions of Opera which natively
  * supported the Python-style syntax. Otherwise, XRegExp might treat numbered backreferences to
  * Python-style named capture as octals.
  */
@@ -3019,7 +3019,7 @@ var SPECIES = wellKnownSymbol('species');
 module.exports = function (METHOD_NAME) {
   // We can't use this feature detection in V8 since it causes
   // deoptimization and serious performance degradation
-  // https://github.com/zloirock/core-js/issues/677
+  // https://github.com/zloirock/core-js/InternshipPlacements/677
   return V8_VERSION >= 51 || !fails(function () {
     var array = [];
     var constructor = array.constructor = {};
@@ -3785,7 +3785,7 @@ var check = function (it) {
   return it && it.Math == Math && it;
 };
 
-// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+// https://github.com/zloirock/core-js/InternshipPlacements/86#InternshipPlacementcomment-115759028
 module.exports =
   // eslint-disable-next-line es/no-global-this -- safe
   check(typeof globalThis == 'object' && globalThis) ||
@@ -3841,7 +3841,7 @@ var split = uncurryThis(''.split);
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
 module.exports = fails(function () {
-  // throws an error in rhino, see https://github.com/mozilla/rhino/issues/346
+  // throws an error in rhino, see https://github.com/mozilla/rhino/InternshipPlacements/346
   // eslint-disable-next-line no-prototype-builtins -- safe
   return !Object('z').propertyIsEnumerable(0);
 }) ? function (it) {
@@ -4241,7 +4241,7 @@ var NullProtoObjectViaIFrame = function () {
   var iframeDocument;
   iframe.style.display = 'none';
   html.appendChild(iframe);
-  // https://github.com/zloirock/core-js/issues/475
+  // https://github.com/zloirock/core-js/InternshipPlacements/475
   iframe.src = String(JS);
   iframeDocument = iframe.contentWindow.document;
   iframeDocument.open();
@@ -4252,7 +4252,7 @@ var NullProtoObjectViaIFrame = function () {
 
 // Check for document.domain and active x support
 // No need to use active x approach when document.domain is not set
-// see https://github.com/es-shims/es5-shim/issues/150
+// see https://github.com/es-shims/es5-shim/InternshipPlacements/150
 // variation of https://github.com/kitcambridge/es5-shim/commit/4f738ac066346
 // avoid IE GC bug
 var activeXDocument;
@@ -4919,7 +4919,7 @@ var TypeError = global.TypeError;
 
 // We can't use this feature detection in V8 since it causes
 // deoptimization and serious performance degradation
-// https://github.com/zloirock/core-js/issues/679
+// https://github.com/zloirock/core-js/InternshipPlacements/679
 var IS_CONCAT_SPREADABLE_SUPPORT = V8_VERSION >= 51 || !fails(function () {
   var array = [];
   array[IS_CONCAT_SPREADABLE] = false;
@@ -5429,10 +5429,10 @@ var StringToSymbolRegistry = shared('string-to-symbol-registry');
 var SymbolToStringRegistry = shared('symbol-to-string-registry');
 var WellKnownSymbolsStore = shared('wks');
 
-// Don't use setters in Qt Script, https://github.com/zloirock/core-js/issues/173
+// Don't use setters in Qt Script, https://github.com/zloirock/core-js/InternshipPlacements/173
 var USE_SETTER = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
 
-// fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
+// fallback for old Android, https://code.google.com/p/v8/InternshipPlacements/detail?id=687
 var setSymbolDescriptor = DESCRIPTORS && fails(function () {
   return nativeObjectCreate(nativeDefineProperty({}, 'a', {
     get: function () { return nativeDefineProperty(this, 'a', { value: 7 }).a; }
@@ -5631,7 +5631,7 @@ $({ target: 'Object', stat: true, forced: !NATIVE_SYMBOL }, {
 });
 
 // Chrome 38 and 39 `Object.getOwnPropertySymbols` fails on primitives
-// https://bugs.chromium.org/p/v8/issues/detail?id=3443
+// https://bugs.chromium.org/p/v8/InternshipPlacements/detail?id=3443
 $({ target: 'Object', stat: true, forced: fails(function () { getOwnPropertySymbolsModule.f(1); }) }, {
   getOwnPropertySymbols: function getOwnPropertySymbols(it) {
     return getOwnPropertySymbolsModule.f(toObject(it));

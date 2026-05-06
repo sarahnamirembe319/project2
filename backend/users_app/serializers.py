@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from issues_app.models import InternshipPlacement
+from InternshipPlacements_app.models import InternshipPlacement
 
 User = get_user_model()
 
@@ -26,7 +26,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         return user
 
 
-class IssueSerializer(serializers.ModelSerializer):
+class InternshipPlacementSerializer(serializers.ModelSerializer):
     class Meta:
         model = InternshipPlacement
         fields = '__all__'

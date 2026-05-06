@@ -1,15 +1,15 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
-from .models import Issue
-from .serializers import IssueSerializer
+from .models import InternshipPlacement
+from .serializers import InternshipPlacementSerializer
 
 
-class IssueViewSet(viewsets.ModelViewSet):
-    serializer_class = IssueSerializer
+class InternshipPlacementViewSet(viewsets.ModelViewSet):
+    serializer_class = InternshipPlacementSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Issue.objects.filter(created_by=self.request.user)
+        return InternshipPlacement.objects.filter(created_by=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)

@@ -1,4 +1,4 @@
-# backend/issues_app/admin.py
+# backend/InternshipPlacements_app/admin.py
 
 from django.contrib import admin
 from .models import InternshipPlacement, WeeklyLog, EvaluationCriteria, Evaluation

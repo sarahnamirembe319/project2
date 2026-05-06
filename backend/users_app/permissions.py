@@ -6,7 +6,7 @@ class IsAdmin(BasePermission):
         return request.user.profile.role == "admin"
 
 
-class CanAccessIssue(BasePermission):
+class CanAccessInternshipPlacement(BasePermission):
 
     def has_object_permission(self, request, view, obj):
         if request.user.profile.role == "admin":
