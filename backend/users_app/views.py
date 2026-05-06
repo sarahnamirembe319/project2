@@ -1,15 +1,13 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework import permissions
 from rest_framework import status, generics
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
-from .serializers import RegisterSerializer, UserSerializer
+from .serializers import UserRegisterSerializer, UserSerializer
 
 User = get_user_model()
 
@@ -17,7 +15,7 @@ User = get_user_model()
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = [AllowAny]
-    serializer_class = RegisterSerializer
+    serializer_class = UserRegisterSerializer
 
 
 class LoginView(APIView):
@@ -35,7 +33,6 @@ class LoginView(APIView):
                 status=status.HTTP_401_UNAUTHORIZED
             )
 
-        # generate JWT tokens
         refresh = RefreshToken.for_user(user)
         return Response({
             'access': str(refresh.access_token),
@@ -66,6 +63,7 @@ class ProfileView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.request.user
+
 
 class MeView(APIView):
     permission_classes = [permissions.IsAuthenticated]
