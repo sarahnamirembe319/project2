@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('InternshipPlacements_app', '0002_evaluation_criteria_weeklylog_placement_and_more'),
+        ('issues_app', '0002_evaluation_criteria_weeklylog_placement_and_more'),
     ]
 
     operations = [

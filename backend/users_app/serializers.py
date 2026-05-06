@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from InternshipPlacements_app.models import InternshipPlacement
+from issues_app.models import InternshipPlacement
 
 User = get_user_model()
 

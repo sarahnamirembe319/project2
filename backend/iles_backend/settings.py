@@ -19,7 +19,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'core',
-    'InternshipPlacements_app.apps.InternshipPlacementsConfig',
+    'issues_app.apps.InternshipPlacementsConfig',
     'users_app.apps.UsersConfig',
 ]
 
