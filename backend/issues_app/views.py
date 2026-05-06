@@ -1,6 +1,6 @@
 from rest_framework import generics
 from .models import InternshipPlacement
-from users_app.serializers import IssueSerializer
+from .serializers import IssueSerializer
 
 
 class InternshipPlacementListCreateView(generics.ListCreateAPIView):
