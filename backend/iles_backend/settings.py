@@ -105,9 +105,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']  # if you have a static folder
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 CORS_ALLOW_ALL_ORIGINS=True
-CORS_ALLOW_ALL_ORIGINS = CORS_ALLOWED_ORIGINS = [
-    "https://iles-i7zm.onrender.com",
-]
+
 
 from datetime import timedelta
 
