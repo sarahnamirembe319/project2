@@ -36,6 +36,6 @@ class Migration(migrations.Migration):
             preserve_default=False,
         ),
         migrations.DeleteModel(
-            name='Issue',
+            name='InternshipPlacement',
         ),
     ]

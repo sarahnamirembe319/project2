@@ -2091,7 +2091,7 @@ S2.define('select2/selection/search',[
       '.select2-search--inline',
       function (evt) {
         // IE will trigger the `input` event when a placeholder is used on a
-        // search box. To get around this issue, we are forced to ignore all
+        // search box. To get around this InternshipPlacement, we are forced to ignore all
         // `input` events in IE and keep using `keyup`.
         if (disableInputEvents) {
           self.$selection.off('input.search input.searchcheck');
@@ -2108,7 +2108,7 @@ S2.define('select2/selection/search',[
       '.select2-search--inline',
       function (evt) {
         // IE will trigger the `input` event when a placeholder is used on a
-        // search box. To get around this issue, we are forced to ignore all
+        // search box. To get around this InternshipPlacement, we are forced to ignore all
         // `input` events in IE and keep using `keyup`.
         if (disableInputEvents && evt.type === 'input') {
           self.$selection.off('input.search input.searchcheck');

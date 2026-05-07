@@ -1,20 +1,27 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
-from issues_app.models import Issue
+from django.contrib.auth import get_user_model
+from issues_app.models import InternshipPlacement
+
+User = get_user_model()
 
 
-class UserSerializer(serializers.ModelSerializer):
+class RegisterSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+        fields = ["id", "username", "email", "password", "first_name", "last_name"]
 
+    def create(self, validated_data):
+        password = validated_data.pop("password")
 
-class IssueSerializer(serializers.ModelSerializer):
-    created_by = UserSerializer(read_only=True)
-    assigned_to = UserSerializer(read_only=True)
+        user = User(**validated_data)
+        user.set_password(password)
+        user.save()
 
+        return user
+
+class InternshipPlacementSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Issue
-        fields = ['id', 'title', 'description', 'status', 'priority', 
-                 'created_by', 'assigned_to', 'created_at', 'updated_at']
-        read_only_fields = ['id', 'created_at', 'updated_at']
+        model = InternshipPlacement
+        fields = '__all__'
