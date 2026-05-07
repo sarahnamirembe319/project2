@@ -1,23 +1,30 @@
 import { useAuth } from "../context/AuthContext";
 
 function Dashboard() {
-  const { user, role, token } = useAuth();
+  const { user, role } = useAuth();
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h1>DASHBOARD WORKING</h1>
+    <div style={{ padding: "30px" }}>
+      <h1>ILES Dashboard</h1>
 
-      <p>
-        Username: {user?.username || "No User"}
-      </p>
+      <hr />
 
-      <p>
-        Role: {role || "No Role"}
-      </p>
+      <h2>Welcome, {user?.username}</h2>
 
-      <p>
-        Token: {token ? "YES" : "NO"}
-      </p>
+      <p>Role: {role}</p>
+
+      <div style={{ marginTop: "30px" }}>
+        <button>Placements</button>
+        <button style={{ marginLeft: "10px" }}>
+          Weekly Logs
+        </button>
+        <button style={{ marginLeft: "10px" }}>
+          Evaluations
+        </button>
+        <button style={{ marginLeft: "10px" }}>
+          Profile
+        </button>
+      </div>
     </div>
   );
 }
