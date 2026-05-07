@@ -46,74 +46,21 @@ function Login() {
     }
   };
 
-  return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        background: "#f5f5f5",
-      }}
-    >
-      <form
-        onSubmit={handleLogin}
-        style={{
-          background: "white",
-          padding: "30px",
-          borderRadius: "10px",
-          width: "300px",
-          boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-        }}
-      >
-        <h2 style={{ textAlign: "center" }}>Login</h2>
+    return (
+  <div style={{ padding: 40 }}>
+    <h1>DASHBOARD WORKING</h1>
 
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          style={{
-            width: "100%",
-            padding: "10px",
-            marginBottom: "10px",
-          }}
-        />
+    <p>Username: {user?.username}</p>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{
-            width: "100%",
-            padding: "10px",
-            marginBottom: "10px",
-          }}
-        />
+    <p>
+      Role: {typeof role === "string" ? role : "No role"}
+    </p>
 
-        <button
-          type="submit"
-          style={{
-            width: "100%",
-            padding: "10px",
-            background: "crimson",
-            color: "white",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          Login
-        </button>
-
-        {error && (
-          <p style={{ color: "red", marginTop: "10px" }}>
-            {error}
-          </p>
-        )}
-      </form>
-    </div>
-  );
+    <p>
+      Token: {token ? "YES" : "NO"}
+    </p>
+  </div>
+);
 }
 
 export default Login;
