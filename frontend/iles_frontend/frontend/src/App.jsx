@@ -1,17 +1,39 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// the main user inetrface
+import {BrowserRouter, Routes , Route} from "react-router-dom";
+import Login from "./pages/Login"
+import Dashboard from "./pages/Dashboard"
+import AuthProvider  from "./context/AuthContext";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import SubmitLog from "./pages/SubmitLog";
 
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-
-function App() {
-  return (
+function App(){
+  return(
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          {/* Public route - anyone can access */}
+          <Route path="/" element={<Login/>} />
+          {/* Protected route - only logged in users */}
+          <Route 
+            path="/dashboard" 
+            element={
+              <ProtectedRoute>
+
+                <Dashboard/>
+              </ProtectedRoute>
+            }
+          />  
+          <Route 
+            path="/submit-log" 
+            element={
+              <ProtectedRoute>
+                <SubmitLog/>
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
-
 export default App;
