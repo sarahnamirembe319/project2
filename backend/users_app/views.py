@@ -8,6 +8,25 @@ from django.http import JsonResponse
 from .serializers import RegisterSerializer
 
 User = get_user_model()
+class DebugUserView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        username = request.GET.get("username")
+        password = request.GET.get("password")
+
+        try:
+            user = User.objects.get(username=username)
+            return Response({
+                "exists": True,
+                "username": user.username,
+                "password_starts_with": user.password[:20],
+                "password_check": user.check_password(password),
+            })
+        except User.DoesNotExist:
+            return Response({
+                "exists": False
+            })
 
 
 class RegisterView(generics.CreateAPIView):

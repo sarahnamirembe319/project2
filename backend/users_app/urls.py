@@ -1,6 +1,7 @@
 from django.urls import path
 from django.http import JsonResponse
 from .views import RegisterView, LoginView, LogoutView, ProfileView, MeView
+from .views import RegisterView, LoginView, LogoutView, ProfileView, MeView, DebugUserView
 
 
 def home(request):
