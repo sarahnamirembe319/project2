@@ -12,51 +12,108 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
 
     try {
-      const response = await fetch("https://iles-i7zm.onrender.com/api/auth/login/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
+      const response = await fetch(
+        "https://iles-i7zm.onrender.com/api/auth/login/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            password,
+          }),
+        }
+      );
 
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data?.error || data?.detail || "Login failed. Please check your credentials.");
+        setError(data?.error || "Login failed");
         return;
       }
 
       setUser(data.user);
       setToken(data.access);
-      setRole(data.user?.role || null);
+      setRole(data.user?.role || "student");
 
       navigate("/dashboard");
     } catch (err) {
-      console.error("Login failed:", err);
-      setError("Failed to log in. Please check your username and password.");
+      console.error(err);
+      setError("Login failed");
     }
   };
 
-  return(
-  <div>
-    <h1>DASHBOARD WORKING</h1>
+  return (
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "#f5f5f5",
+      }}
+    >
+      <form
+        onSubmit={handleLogin}
+        style={{
+          background: "white",
+          padding: "30px",
+          borderRadius: "10px",
+          width: "300px",
+          boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+        }}
+      >
+        <h2 style={{ textAlign: "center" }}>Login</h2>
 
-    <p>User: {user?.username}</p>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          style={{
+            width: "100%",
+            padding: "10px",
+            marginBottom: "10px",
+          }}
+        />
 
-    <p>
-      Role: {typeof role === "string" ? role : "user"}
-    </p>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{
+            width: "100%",
+            padding: "10px",
+            marginBottom: "10px",
+          }}
+        />
 
-    <p>
-      Token: {token ? "YES" : "NO"}
-    </p>
-  </div>
-);
-    
+        <button
+          type="submit"
+          style={{
+            width: "100%",
+            padding: "10px",
+            background: "crimson",
+            color: "white",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          Login
+        </button>
+
+        {error && (
+          <p style={{ color: "red", marginTop: "10px" }}>
+            {error}
+          </p>
+        )}
+      </form>
+    </div>
+  );
 }
 
 export default Login;
