@@ -41,27 +41,22 @@ function Login() {
     }
   };
 
-  return (
-    <form onSubmit={handleLogin}>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
+  return(
+  <div>
+    <h1>DASHBOARD WORKING</h1>
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+    <p>User: {user?.username}</p>
 
-      <button type="submit">Login</button>
+    <p>
+      Role: {typeof role === "string" ? role : "user"}
+    </p>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
-    </form>
-  );
+    <p>
+      Token: {token ? "YES" : "NO"}
+    </p>
+  </div>
+);
+    
 }
 
 export default Login;
