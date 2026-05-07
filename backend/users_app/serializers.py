@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from issues_app.models import InternshipPlacement
+from .models import Profile
 
 User = get_user_model()
 
@@ -14,14 +14,13 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         password = validated_data.pop("password")
-
         user = User(**validated_data)
         user.set_password(password)
         user.save()
-
         return user
 
-class InternshipPlacementSerializer(serializers.ModelSerializer):
+
+class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = InternshipPlacement
-        fields = '__all__'
+        model = Profile
+        fields = "__all__"
