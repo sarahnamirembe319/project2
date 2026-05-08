@@ -35,7 +35,42 @@ function Dashboard() {
         <div style={styles.topbar}>
           <span style={styles.menu}>☰</span>
           <div style={styles.userBox}>
-            <span>🔔</span>
+            <div style={{ position: "relative" }}>
+  <button
+    onClick={() =>
+      alert(
+        "📢 Notifications\n\n• Weekly log deadline is Friday\n• Profile updated successfully\n• No new evaluations yet"
+      )
+    }
+    style={{
+      border: "none",
+      background: "transparent",
+      fontSize: "22px",
+      cursor: "pointer",
+    }}
+  >
+    🔔
+  </button>
+
+  <span
+    style={{
+      position: "absolute",
+      top: "-5px",
+      right: "-5px",
+      background: "red",
+      color: "white",
+      borderRadius: "50%",
+      width: "18px",
+      height: "18px",
+      fontSize: "11px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+  >
+    3
+  </span>
+</div>
             <span style={styles.avatar}>👤</span>
             <strong>{user?.username || "Student"}</strong>
           </div>
