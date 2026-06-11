@@ -61,7 +61,7 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
+        default=os.environ.get("https://iles-i7zm.onrender.com/database_url"),
         conn_max_age=600,
     )
 }
