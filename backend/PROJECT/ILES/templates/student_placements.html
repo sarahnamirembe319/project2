@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>My Placements</h2>
+
+<ul>
+{% for p in placements %}
+    <li>{{ p.company_name }} - {{ p.position_title }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

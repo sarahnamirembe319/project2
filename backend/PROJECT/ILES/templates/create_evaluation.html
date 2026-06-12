@@ -1,0 +1,32 @@
+<h2>Create Evaluation</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Student:</label>
+    <select name="student_id">
+        {% for s in students %}
+            <option value="{{ s.id }}">{{ s }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Supervisor:</label>
+    <select name="supervisor_id">
+        {% for sup in supervisors %}
+            <option value="{{ sup.id }}">{{ sup }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Criteria:</label>
+    <select name="criteria_id">
+        {% for c in criteria %}
+            <option value="{{ c.id }}">{{ c }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <input type="number" name="performance_score" placeholder="Score"><br><br>
+
+    <textarea name="comments" placeholder="Comments"></textarea><br><br>
+
+    <button type="submit">Submit</button>
+</form>

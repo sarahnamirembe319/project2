@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+
+<table border="1">
+<tr>
+    <th>Student</th>
+    <th>Score</th>
+    <th>Comments</th>
+</tr>
+
+{% for e in evaluations %}
+<tr>
+    <td>{{ e.student }}</td>
+    <td>{{ e.performance_score }}</td>
+    <td>{{ e.comments }}</td>
+</tr>
+{% endfor %}
+
+</table>
+{% endblock %}
